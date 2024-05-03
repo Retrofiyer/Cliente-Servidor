@@ -4,13 +4,14 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+const firebaseConfigJSON = JSON.parse(process.env.FIREBASE_CONFIG_JSON);
 const firebaseConfig = {
-  apiKey: process.env.APIKEY_FIREBASE,
-  authDomain: process.env.AUTH_DOMAIN,
-  projectId: process.env.PROJECT_ID,
-  storageBucket: process.env.STORAGE_BUCKET,
-  messagingSenderId: process.env.MESSAGING_SENDER_ID,
-  appId: process.env.APP_ID
+  apiKey: firebaseConfigJSON.apiKey,
+  authDomain: firebaseConfigJSON.authDomain,
+  projectId: firebaseConfigJSON.projectId,
+  storageBucket: firebaseConfigJSON.storageBucket,
+  messagingSenderId: firebaseConfigJSON.messagingSenderId,
+  appId: firebaseConfigJSON.appId
 };
 
 // Initialize Firebase

@@ -1,21 +1,26 @@
 name: keys firebase
 
-on: 
+on:
   push:
     branches:
       - main
 
 jobs:
-  keys_load:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Configurar el ambiente
+      - name: Checkout del código
+        uses: actions/checkout@v2
+
+      - name: Cargar las claves de Firebase
         env:
-          APIKEY_FIREBASE: ${{ secrets.APIKEY_FIREBASE }}
-          AUTH_DOMAIN: ${{ secrets.AUTH_DOMAIN }}
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          STORAGE_BUCKET: ${{ secrets.STORAGE_BUCKET }}
-          MESSAGING_SENDER_ID: ${{ secrets.MESSAGING_SENDER_ID }}
-          APP_ID: ${{ secrets.APP_ID }}
-        run:
-          echo "Claves de Firebase cargadas correctamente"
+          FIREBASE_CONFIG_JSON: ${{ secrets.FIREBASE_CONFIG_JSON }}
+        run: |
+          echo "$FIREBASE_CONFIG_JSON" > firebase-config.json
+
+      - name: Configurar Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting --project your-project-id --config firebase-config.json
+
