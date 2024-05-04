@@ -29,7 +29,7 @@ body {
     flex-direction: column;
   }
   
-  button,
+  .btn-event,
   .btn-logout {
     margin: 0 auto;
     width: 50%;
@@ -43,6 +43,25 @@ body {
     transition: background-color 0.3s ease;
   }
   
+  .txt{
+    font-size: 20 px;
+    color: gray;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 5px;
+  }
+
+  .btnswitch{
+    background-color: #0095b3;
+    border-radius: 20px;
+    width: 40%;
+    padding: 5px;
+    border-width: 0px;
+    margin-left: 15px;
+    color: #f0f0f0;
+    font-size: 16px;
+    box-shadow: 0px 2px 15px;
+  }
+
   button:hover {
     background-color: #0056b3;
   }
