@@ -14,13 +14,11 @@ jobs:
           repository: ${{ github.repository }}
       - uses: actions/setup-node@v4
         with:
-          node-version: 'latest'
+          node-version: '16.6.0'
       - name: install Dependencies
         run: npm install
       - name: Lint
         run: npm run eslint
 
-      - uses: actions/setup-node@v4
-        with:
-            node-version: 'latest'
+
         
