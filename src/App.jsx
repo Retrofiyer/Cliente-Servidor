@@ -1,7 +1,13 @@
 import {useState} from "react"
 
+// import appFirebase from '../src/credenciales'
+// import {getAuth, onAuthStateChanged} from "firebase/auth"
+
+// const auth = getAuth(appFirebase)
+
 import appFirebase from '../src/credenciales'
-import {getAuth, onAuthStateChanged} from "firebase/auth"
+import {getAuth, onAuthStateChanged} from 'firebase/auth'
+
 const auth = getAuth(appFirebase)
 
 //Import Components

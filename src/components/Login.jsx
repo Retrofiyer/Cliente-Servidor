@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 
 import appFirebase from '../credenciales'
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
+
 const auth = getAuth(appFirebase)
 
 const Login = () => {
@@ -10,6 +11,7 @@ const Login = () => {
     const [error, setError] = useState(null);
 
     const funAuth = async(e) => {
+
         e.preventDefault();
 
         const email = e.target.email.value;
@@ -20,7 +22,7 @@ const Login = () => {
         if(registrando){
             try {
                 await createUserWithEmailAndPassword(auth, email, password)
-                alert('Registro exitoso. Ahora inicia sesión con tus credenciales.');
+                alert('Registro exitoso.');
             } catch (error) {
                 alert("El Usuario ya existe")
             }
@@ -48,10 +50,9 @@ const Login = () => {
                 <input type='text' placeholder='Ingresar Email' className='boxtxt' id='email' />
                 <label>Contraseña</label>
                 <input type='password' placeholder='Ingresar Contraseña' className='boxpass' id='password' />
-                {error && <div className='error-message'>{error}</div>}
                 <div className='button-container'>
                 <button className='btn-event' type='submit'>{registrando ? 'Registrarse' : 'Iniciar Sesión'}</button>
-                  <h5 className='txt'>{registrando ? "Si ya tienes cuenta" : "No tienes cuenta"}<button className='btnswitch' type='button' onClick={() => setRegistrando(!registrando)}>
+                  <h5 className='txt'>{registrando ? "Si ya tienes cuenta" : "¿No tienes cuenta?"}<button className='btnswitch' type='button' onClick={() => setRegistrando(!registrando)}>
                     {registrando ? 'Iniciar Sesión' : 'Registrarse'}
                   </button></h5>
                 </div>
