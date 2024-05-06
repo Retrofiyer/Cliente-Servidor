@@ -28,5 +28,5 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         uses: bervProject/railway-deploy@main
         with:
-          railway_token: ${{ secrets.SERVICE }}
+          railway_token: ${{ secrets.SECRET_LOGIN }}
           service: "Cliente-Servidor"
