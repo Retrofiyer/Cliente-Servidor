@@ -1,4 +1,4 @@
-name: Deploy Aplication
+name: Deploy Application
 
 on:
   push:
@@ -15,7 +15,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '16.6.0'
-      - name: install Dependencies
+      - name: Install Dependencies
         run: npm install
       - name: Build
         run: npm run build
+
+  deploy:
+    needs: [login]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Railway
+        if: ${{ github.event_name == 'push' }}
+        uses: bervProject/railway-deploy@main
+        with:
+          railway_token: ${{ secrets.CLIENT-SERVICE }}
+          service: "ci-test"
