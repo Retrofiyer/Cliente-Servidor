@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import {Link} from 'react-route-dom';
 import appFirebase from '../credenciales'
 import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from 'firebase/auth'
 
@@ -8,7 +8,6 @@ const auth = getAuth(appFirebase)
 const Login = () => {
 
     const [registrando, setRegistrando] = useState(false);
-    const [error, setError] = useState(null);
 
     const funAuth = async(e) => {
 
