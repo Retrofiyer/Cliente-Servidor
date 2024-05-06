@@ -6,7 +6,7 @@ on:
       - master
 
 jobs:
-  login:
+  Deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -14,13 +14,14 @@ jobs:
           repository: ${{ github.repository }}
       - uses: actions/setup-node@v4
         with:
-          node-version: 'latest'
+          node-version: '16.6.0'
       - name: install Dependencies
         run: npm install
-      - name: Lint
-        run: npm run eslint
-
-      - uses: actions/setup-node@v4
+      - name: Build
+        run: npm run build
+      - name: Deploy to Railway
+        if: ${{ github.event_name == 'push' }}
+        uses: bervProject/railway-deploy@main
         with:
-            node-version: 'latest'
-        
+          railway_token: ${{ secrets.RAILWAY_TOKEN }}
+          service: "Cliente-Servidor"
