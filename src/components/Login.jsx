@@ -56,7 +56,6 @@ const Login = () => {
                     {registrando ? 'Iniciar Sesión' : 'Registrarse'}
                   </button></h5>
                 </div>
-                <h5>hola</h5>
               </form>
             </div>
           </div>
