@@ -24,7 +24,7 @@ jobs:
     needs: [login]
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to Railway
+      - name: Deploy to Railway with Login
         if: ${{ github.event_name == 'push' }}
         uses: bervProject/railway-deploy@main
         with:
