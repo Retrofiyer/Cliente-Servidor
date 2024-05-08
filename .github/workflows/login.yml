@@ -1,4 +1,4 @@
-name: Deploy Application
+name: Deployment Login
 
 on:
   push:
@@ -6,27 +6,26 @@ on:
       - master
 
 jobs:
-  login:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          repository: ${{ github.repository }}
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '16.6.0'
-      - name: Install Dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
 
   deploy:
-    needs: [login]
     runs-on: ubuntu-latest
+
     steps:
-      - name: Deploy to Railway and App
-        if: ${{ github.event_name == 'push' }}
-        uses: bervProject/railway-deploy@main
+      - uses: actions/checkout@v2
         with:
-          railway_token: ${{secrets.APP}}
-          service: "Cliente-Servidor"
+          repository: EAllaucaD/Cliente-Servidor
+          path: Cliente-Servidor
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 16.6.0
+      - run: npm install
+        working-directory: app
+
+      - name: Install Railway
+        run: npm i -g @railway/cli
+
+      - name: Deploy with Railway
+        run: railway up --service Cliente-Servidor
+        working-directory: Cliente-Servidor
+        env:
+          RAILWAY_TOKEN: ${{ secrets.APP }}
