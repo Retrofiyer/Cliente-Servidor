@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: 16.6.0
       - run: npm install
-        working-directory: app
+        working-directory: Cliente-Servidor
 
       - name: Install Railway
         run: npm i -g @railway/cli
