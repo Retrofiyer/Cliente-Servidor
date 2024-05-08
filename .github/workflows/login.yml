@@ -24,7 +24,7 @@ jobs:
       - name: Install Railway
         run: npm i -g @railway/cli
 
-      - name: Deploy with Railway
+      - name: Deploy Login with Railway
         run: railway up --service Cliente-Servidor
         working-directory: Cliente-Servidor
         env:
