@@ -1,32 +1,33 @@
-name: Deploy Aplication
+name: Deployment Login
 
 on:
   push:
     branches:
       - master
- 
+
 jobs:
-  login-firabase:
+  start:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
         with:
           repository: ${{ github.repository }}
+          path: Cliente-Servidor
       - uses: actions/setup-node@v4
         with:
-          node-version: '16.6.0'
-      - name: Install Dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
- 
+          node-version: 16.6.0
+      - run: npm install
+        working-directory: Cliente-Servidor
+
   deploy:
-    needs: [login-firabase]
+    needs: start
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to Railway
-        if: ${{ github.event_name == 'push' }}
-        uses: bervProject/railway-deploy@main
-        with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN }}
-          service: "Cliente-Servidor"
+      - name: Install Railway
+        run: npm i -g @railway/cli
+
+      - name: Deploy Login App with Railway
+        run: railway up --service Cliente-Servidor
+        working-directory: Cliente-Servidor
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
