@@ -1,6 +1,4 @@
-# nixpacks.toml
 
-# Especifica las fases del proceso de construcción
 [phases.setup]
 nixPkgs = ['nodejs']  # Instala Node.js y Yarn
 
