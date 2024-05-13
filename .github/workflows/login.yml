@@ -6,7 +6,12 @@ on:
       - master
 
 jobs:
+<<<<<<< HEAD
   start:
+=======
+  deploy:
+  login-firabase:
+>>>>>>> bca437979d5e24f67b279387c620359984894037
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -15,10 +20,15 @@ jobs:
           path: Cliente-Servidor
       - uses: actions/setup-node@v4
         with:
+<<<<<<< HEAD
+=======
+
+>>>>>>> bca437979d5e24f67b279387c620359984894037
           node-version: 16.6.0
       - run: npm install
         working-directory: Cliente-Servidor
 
+<<<<<<< HEAD
   deploy:
     needs: start
     runs-on: ubuntu-latest
@@ -31,3 +41,13 @@ jobs:
         working-directory: Cliente-Servidor
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+=======
+      - name: Install Railway
+        run: npm i -g @railway/cli
+
+      - name: Deploy Login  App with Railway
+        run: railway up --service Cliente-Servidor
+        working-directory: Cliente-Servidor
+        env:
+          RAILWAY_TOKEN: ${{ secrets.APP }}
+>>>>>>> bca437979d5e24f67b279387c620359984894037
