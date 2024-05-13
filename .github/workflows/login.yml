@@ -38,4 +38,4 @@ jobs:
         run: railway up --service Cliente-Servidor
         working-directory: Cliente-Servidor
         env:
-          RAILWAY_TOKEN: ${{ secrets.APP }}
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
