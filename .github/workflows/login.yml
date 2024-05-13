@@ -30,12 +30,3 @@ jobs:
         working-directory: Cliente-Servidor
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-
-      - name: Install Railway
-        run: npm i -g @railway/cli
-
-      - name: Deploy Login  App with Railway
-        run: railway up --service Cliente-Servidor
-        working-directory: Cliente-Servidor
-        env:
-          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
